@@ -6,15 +6,19 @@ int main()
 	int n, m;
 	cin >> n >> m;
 	int* array = new int[n];
-	for (int v = 0; v < m; v++)
+	for (int i = 0; i < n; i++)
 	{
-		int i, j;
-		cin >> i >> j;
-		int k = array[i];
-		array[i] = array[j];
-		array[j] = k;
+		array[i] = i + 1;
 	}
-	for (int i = 0; i < sizeof(array) / sizeof(int); i++)
+	for (int i = 0; i < m; i++)
+	{
+		int v, j;
+		cin >> v >> j;
+		int k = array[v-1];
+		array[v-1] = array[j-1];
+		array[j-1] = k;
+	}
+	for (int i = 0; i < n; i++)
 	{
 		cout << array[i] << " ";
 	}
