@@ -3,23 +3,24 @@ using namespace std;
 
 int main()
 {
-	int n, m;
-	cin >> n >> m;
-	int* array = new int[n];
-	for (int i = 0; i < n; i++)
+	int n;
+	int* array = new int[30];
+	for (int i = 0; i < 30; i++)
 	{
 		array[i] = i + 1;
 	}
-	for (int i = 0; i < m; i++)
+	for (int i = 0; i < 28; i++)
 	{
-		int v, j;
-		cin >> v >> j;
-		int k = array[v-1];
-		array[v-1] = array[j-1];
-		array[j-1] = k;
+		cin >> n;
+		for (int i = 0; i < 30; i++)
+		{
+			if (array[i] == n) { array[i] = 0; }
+		}
 	}
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < 30; i++)
 	{
-		cout << array[i] << " ";
+		if (array[i] != 0) {
+			cout << array[i] << endl;
+		}
 	}
 }
