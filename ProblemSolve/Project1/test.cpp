@@ -1,24 +1,34 @@
 #include <iostream>
-#include <algorithm>
+#include <string>
 using namespace std;
 
 int main()
 {
-	int N;	// 시험 본 과목 개수
-	double sum = 0;
-	cin >> N;
-
-	double arr[1001];
-	for (int i = 0; i < N; i++) {
-		cin >> arr[i];
+	string s;
+	int count = 0;
+	getline(cin, s);
+	for (int i = 0; i < s.size(); i++)
+	{
+		if (s[i] == ' ') count++;
 	}
+	if (s.back()  == ' ')
+	{
+		if (s.front() == ' ')
+		{
+			cout << count - 1;
+		}
+		else
+		{
+		cout << count;
 
-	sort(arr, arr + N);		// 배열 오름차순 정렬
-
-	// 가장 큰 점수는 가장 마지막 인덱스에 위치하게 됨
-	for (int i = 0; i < N; i++) {
-		sum = sum + (arr[i] / arr[N - 1]) * 100;	// (조작 된 성적 = (과목 / 최고 성적) * 100) 의 누적 합
+		}
 	}
-
-	cout << sum / N;
+	else if (s.front() == ' ')
+	{
+		cout << count;
+	}
+	else
+	{
+		cout << count + 1;
+	}
 }
