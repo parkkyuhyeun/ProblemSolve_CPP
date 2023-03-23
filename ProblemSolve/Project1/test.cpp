@@ -4,33 +4,13 @@ using namespace std;
 
 int main()
 {
-	int n, m, i, j, k;
-	cin >> n >> m;
-	int* baskets = new int[n];
-	int* baskets2 = new int[n];
-	for (int v = 0; v < n; v++)
+	string s;
+	cin >> s;
+	int t_count = 0;
+	for (int i = 0; i < s.size() / 2; i++)
 	{
-		baskets[v] = v + 1;
-		baskets2[v] = v + 1;
+		if (s[i] == s[s.size() - i - 1]) t_count++;
 	}
-	for (int v = 0; v < m; v++)
-	{
-		cin >> i >> j >> k;
-		for (int a = k-1; a < j; a++)
-		{
-			baskets[i+a-k] = baskets2[a];
-		}
-		for (int a = i-1; a < k-1; a++)
-		{
-			baskets[a+j-k+1] = baskets2[a];
-		}
-		for (int a = 0; a < n; a++)
-		{
-			baskets2[a] = baskets[a];
-		}
-	}
-	for (int a = 0; a < n; a++)
-	{
-		cout << baskets[a] << " ";
-	}
+	if (t_count == s.size() / 2) cout << 1;
+	else cout << 0;
 }
