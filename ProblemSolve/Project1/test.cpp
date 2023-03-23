@@ -1,38 +1,24 @@
 #include <iostream>
-#include <string>
-#include <time.h>
-#include <math.h>
-#include <windows.h>
-#include <vector>
+#include <algorithm>
 using namespace std;
 
 int main()
 {
-	int n, m, i, j;
-	cin >> n >> m;
-	int* basket = new int[n];
-	int* re_basket = new int[n];
-	for (int v = 0; v < n; v++)
-	{
-		basket[v] = v + 1;
-		re_basket[v] = v + 1;
+	int N;	// 시험 본 과목 개수
+	double sum = 0;
+	cin >> N;
+
+	double arr[1001];
+	for (int i = 0; i < N; i++) {
+		cin >> arr[i];
 	}
-	for (int v = 0; v < m; v++)
-	{
-		cin >> i >> j;
-		int count = i - 1;
-		for (int g = j - 1; g >= i - 1; g--) //뒤집기
-		{
-			re_basket[count] = basket[g];
-			count++;
-		}
-		for (int b = 0; b < n; b++)
-		{
-			basket[b] = re_basket[b];
-		}
+
+	sort(arr, arr + N);		// 배열 오름차순 정렬
+
+	// 가장 큰 점수는 가장 마지막 인덱스에 위치하게 됨
+	for (int i = 0; i < N; i++) {
+		sum = sum + (arr[i] / arr[N - 1]) * 100;	// (조작 된 성적 = (과목 / 최고 성적) * 100) 의 누적 합
 	}
-	for (int t = 0; t < n; t++)
-	{
-		cout << re_basket[t] << " ";
-	}
+
+	cout << sum / N;
 }
