@@ -4,39 +4,28 @@ using namespace std;
 
 int main()
 {
-    string input = "";
-    int arr[26] = { 0 };
-    cin >> input;
-    int max = 0;
-    int num = 0;
-
-    char answer = NULL;
-
-    for (int i = 0; i < input.size(); i++)
-    {
-        input[i] = toupper(input[i]);
-        arr[input[i] - 65]++;
-    }
-
-    for (int i = 0; i < 26; i++)
-    {
-        num = 0;
-        for (int j = 0; j < input.size(); j++)
-        {
-            if ((int)input[j] - 65 == i)
-                num++;
-        }
-
-        if (max < num)
-        {
-            max = num;
-            answer = char(i + 65);
-        }
-        else if (max == num)
-        {
-            answer = '?';
-        }
-    }
-
-    cout << answer;
+	int c;
+	cin >> c;
+	int arr[1000] = {};
+	cin.ignore();
+	for (int i = 0; i < c; i++)
+	{
+		float sum = 0, count = 0;
+		for (int j = 0; j < arr[0]+1; j++)
+		{
+			cin >> arr[j];
+			sum += arr[j];
+		}
+		sum = (sum - arr[0]) / arr[0];
+		for (int j = 1; j <= arr[0]; j++)
+		{
+			if (arr[j] > sum)
+			{
+				count++;
+			}
+		}
+		cout << fixed;
+		cout.precision(3);
+		cout << count / arr[0] * 100 << "%" << endl;
+	}
 }
