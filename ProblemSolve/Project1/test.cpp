@@ -4,23 +4,31 @@ using namespace std;
 
 int main()
 {
-	int arr[9][9], max = 0, pos[2];
-	for (int i = 0; i < 9; i++)
-	{
-		for (int j = 0; j < 9; j++)
-		{
-			cin >> arr[j][i];
-			if (max < arr[j][i])
-			{
-				max = arr[j][i];
-				pos[0] = i;
-				pos[1] = j;
-			}
+	string s;
+	int iarr[5];
+	char arr[5][15];
+
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 15; j++) {
+			arr[i][j] = ' ';
 		}
 	}
-	cout << max << endl;
-	for (int i = 0; i < 2; i++)
+
+	for (int i = 0; i < 5; i++)
 	{
-		cout << pos[i]+1 << " ";
+		cin >> s;
+		iarr[i] = s.size();
+		for (int j = 0; j < s.size(); j++)
+		{
+			arr[i][j] = s[j];
+		}
+	}
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (arr[j][i] == ' ') continue;
+			cout << arr[j][i];
+		}
 	}
 }
