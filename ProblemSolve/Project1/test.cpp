@@ -4,31 +4,17 @@ using namespace std;
 
 int main()
 {
-	string s;
-	int iarr[5];
-	char arr[5][15];
-
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 15; j++) {
-			arr[i][j] = ' ';
-		}
-	}
-
-	for (int i = 0; i < 5; i++)
+	int a, b;
+	bool zero = false;
+	while (!zero)
 	{
-		cin >> s;
-		iarr[i] = s.size();
-		for (int j = 0; j < s.size(); j++)
+		cin >> a >> b;
+		if (a == 0 && b == 0) zero = true;
+		else
 		{
-			arr[i][j] = s[j];
-		}
-	}
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			if (arr[j][i] == ' ') continue;
-			cout << arr[j][i];
+			if (b % a == 0) cout << "factor" << endl;
+			else if (a % b == 0) cout << "multiple" << endl;
+			else cout << "neither" << endl;
 		}
 	}
 }
