@@ -4,28 +4,23 @@ using namespace std;
 
 int main()
 {
-	int c;
-	cin >> c;
-	int arr[1000] = {};
-	cin.ignore();
-	for (int i = 0; i < c; i++)
+	int arr[9][9], max = 0, pos[2];
+	for (int i = 0; i < 9; i++)
 	{
-		float sum = 0, count = 0;
-		for (int j = 0; j < arr[0]+1; j++)
+		for (int j = 0; j < 9; j++)
 		{
-			cin >> arr[j];
-			sum += arr[j];
-		}
-		sum = (sum - arr[0]) / arr[0];
-		for (int j = 1; j <= arr[0]; j++)
-		{
-			if (arr[j] > sum)
+			cin >> arr[j][i];
+			if (max < arr[j][i])
 			{
-				count++;
+				max = arr[j][i];
+				pos[0] = i;
+				pos[1] = j;
 			}
 		}
-		cout << fixed;
-		cout.precision(3);
-		cout << count / arr[0] * 100 << "%" << endl;
+	}
+	cout << max << endl;
+	for (int i = 0; i < 2; i++)
+	{
+		cout << pos[i]+1 << " ";
 	}
 }
