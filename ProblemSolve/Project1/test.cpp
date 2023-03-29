@@ -1,20 +1,20 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-	int a, b;
-	bool zero = false;
-	while (!zero)
+	int n, k, a = 0;
+	int arr[10000] = {};
+	cin >> n >> k;
+	for (int i = 1; i <= n; i++)
 	{
-		cin >> a >> b;
-		if (a == 0 && b == 0) zero = true;
-		else
-		{
-			if (b % a == 0) cout << "factor" << endl;
-			else if (a % b == 0) cout << "multiple" << endl;
-			else cout << "neither" << endl;
+		if (n % i == 0) {
+			arr[a] = i;
+			a++;
 		}
 	}
+	if (arr[k-1] == NULL) cout << "0";
+	else cout << arr[k-1];
 }
