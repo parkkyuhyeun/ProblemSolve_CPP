@@ -1,20 +1,25 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
 int main()
 {
-	int n, k, a = 0;
-	int arr[10000] = {};
-	cin >> n >> k;
-	for (int i = 1; i <= n; i++)
+	int t, c, arr[4], q = 25, d = 10, n = 5, p = 1;
+	cin >> t;
+	for (int i = 0; i < t; i++)
 	{
-		if (n % i == 0) {
-			arr[a] = i;
-			a++;
+		cin >> c;
+		arr[0] = c / q;
+		c %= q;
+		arr[1] = c / d;
+		c %= d;
+		arr[2] = c / n;
+		c %= n;
+		arr[3] = c / p;
+		for (auto i : arr)
+		{
+			cout << i << " ";
 		}
+		cout << endl;
 	}
-	if (arr[k-1] == NULL) cout << "0";
-	else cout << arr[k-1];
 }
