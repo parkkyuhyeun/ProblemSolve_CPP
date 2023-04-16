@@ -4,22 +4,18 @@ using namespace std;
 
 int main()
 {
-	int t, c, arr[4], q = 25, d = 10, n = 5, p = 1;
-	cin >> t;
-	for (int i = 0; i < t; i++)
+	int count = 0;
+	char board[8][8];
+	for (int i = 0; i < 8; i++)
 	{
-		cin >> c;
-		arr[0] = c / q;
-		c %= q;
-		arr[1] = c / d;
-		c %= d;
-		arr[2] = c / n;
-		c %= n;
-		arr[3] = c / p;
-		for (auto i : arr)
+		for (int j = 0; j < 8; j++)
 		{
-			cout << i << " ";
+			cin >> board[j][i];
+			if ((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
+			{
+				if (board[j][i] == 'F') count++;
+			}
 		}
-		cout << endl;
 	}
+	cout << count;
 }
