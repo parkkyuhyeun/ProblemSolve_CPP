@@ -1,21 +1,32 @@
 #include <iostream>
+#include <stack>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-	int count = 0;
-	char board[8][8];
-	for (int i = 0; i < 8; i++)
+	int caseCount;
+	string str;
+	cin >> caseCount;
+	for (int i = 0; i < caseCount; i++)
 	{
-		for (int j = 0; j < 8; j++)
+		stack<char> st;
+		cin >> str;
+		for (int j = 0; j < str.size(); j++)
 		{
-			cin >> board[j][i];
-			if ((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
+			if (str[j] == '(') st.push(str[j]);
+			else if (str[j] == ')')
 			{
-				if (board[j][i] == 'F') count++;
+				if (st.empty())
+				{
+					st.push('s');
+					break;
+				}
+				st.pop();
 			}
 		}
+		if (st.empty()) cout << "YES" << endl;
+		else cout << "NO" << endl;
 	}
-	cout << count;
 }
