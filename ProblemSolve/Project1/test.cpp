@@ -1,42 +1,41 @@
 #include <iostream>
 #include <stack>
-
+#include <string>
 using namespace std;
 
 int main() {
-    int k = 0;
-    int num = 0;
-    int sum = 0;
-    stack<int> st;
-    cin >> k;
-
-    for (int i = 0; i < k; i++)
+    bool balance;
+    while (true)
     {
-        cin >> num;
-        if (num != 0)
-        {
-            st.push(num);
-        }
-        else
-        {
-            st.pop();
-        }
-    }
+        balance = true;
+        stack<char> st;
+        string str;
+        getline(cin, str);
+        if (str == ".") break;
 
-    for (int i = 0; i < k; i++)
-    {
-        if (st.empty())
-        {
-            cout << sum;
-            return 0;
+        for (char ch : str) {
+            if (ch == '(' || ch == '[')
+                st.push(ch);
+            else if (ch == ')') {
+                if (!st.empty() && st.top() == '(')
+                    st.pop();
+                else {
+                    balance = false;
+                    break;
+                }
+            }
+            else if (ch == ']') {
+                if (!st.empty() && st.top() == '[')
+                    st.pop();
+                else {
+                    balance = false;
+                    break;
+                }
+            }
         }
+        if (balance && st.empty())
+            cout << "yes" << '\n';
         else
-        {
-            sum = sum + st.top();
-            st.pop();
-        }
+            cout << "no" << '\n';
     }
-
-    cout << sum;
-    return 0;
 }
