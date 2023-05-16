@@ -4,38 +4,25 @@
 using namespace std;
 
 int main() {
-    bool balance;
-    while (true)
-    {
-        balance = true;
-        stack<char> st;
-        string str;
-        getline(cin, str);
-        if (str == ".") break;
-
-        for (char ch : str) {
-            if (ch == '(' || ch == '[')
-                st.push(ch);
-            else if (ch == ')') {
-                if (!st.empty() && st.top() == '(')
-                    st.pop();
-                else {
-                    balance = false;
-                    break;
-                }
-            }
-            else if (ch == ']') {
-                if (!st.empty() && st.top() == '[')
-                    st.pop();
-                else {
-                    balance = false;
-                    break;
-                }
-            }
-        }
-        if (balance && st.empty())
-            cout << "yes" << '\n';
-        else
-            cout << "no" << '\n';
-    }
+	int t, cnt = 0;
+	string str;
+	cin >> t;
+	while (t--)
+	{
+		stack<char>st;
+		cin >> str;
+		for (int i = 0; i < str.size(); i++)
+		{
+			if (!st.empty() && str[i] == st.top())
+			{
+				st.pop();
+			}
+			else
+			{
+				st.push(str[i]);
+			}
+		}
+		if (st.empty()) cnt++;
+	}
+	cout << cnt;
 }
