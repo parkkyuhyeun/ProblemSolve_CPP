@@ -3,18 +3,25 @@
 using namespace std;
 
 int main() {
-	int N;
+	int N, K;
 	queue<int> q;
-	cin >> N;
+	cin >> N >> K;
 	for (int i = 1; i <= N; i++)
 	{
 		q.push(i);
 	}
-	while (q.size() > 1)
+	cout << "<";
+	while (q.size() != 0)
 	{
-		q.pop();
-		q.push(q.front());
+		for (int i = 1; i < K; i++)
+		{
+			q.push(q.front());
+			q.pop();
+		}
+		cout << q.front();
+		if (q.size() != 1) cout << ", ";
 		q.pop();
 	}
-	cout << q.front();
+
+	cout << ">";
 }
