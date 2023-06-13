@@ -5,17 +5,27 @@ using namespace std;
 
 int main()
 {
-    int N, sum;
-    cin >> N;
+    int n, answer, m, cAnswer;
     vector<int> vt;
-    for(int i = 0; i < N; i++)
+    cin >> n;
+    for (int i = 0; i < n; i++)
     {
-        cin >> sum;
-        vt.push_back(sum);
+        cin >> answer;
+        vt.push_back(answer);
     }
-    sort(vt.begin(), vt.end());
-    for(int i = 0; i < N; i++)
+    cin >> m;
+    for (int i = 0; i < m; i++)
     {
-        cout << vt[i] << endl;
+        cAnswer = 0;
+        cin >> answer;
+        for (int i = 0; i < n; i++)
+        {
+            if (answer == vt[i]) 
+            {
+                cAnswer = 1;
+                break;
+            }
+        }
+        cout << cAnswer << endl;
     }
 }
