@@ -1,24 +1,24 @@
 #include <iostream>
 #include <map>
+#include <unordered_map>
 using namespace std;
 
-int main()
-{
-    map<string, int> books;
-    int n;
-    cin >> n;
+int main() {
+    int n, m;
+    unordered_map<string, int> map1;
+    map<string, int> map2;
+    string name;
+    cin >> n >> m;
     for (int i = 0; i < n; i++) {
-        string book;
-        cin >> book;
-        books[book]++;
+        cin >> name;
+        map1[name] = 1;
     }
-    string bestSellBook;
-    int sellCount = 0;
-    for (auto s : books) {
-        if (sellCount < s.second) {
-            bestSellBook = s.first;
-            sellCount = s.second;
-        }
+    for (int i = 0; i < m; i++) {
+        cin >> name;
+        if (map1[name] == 1) map2[name];
     }
-    cout << bestSellBook;
+    cout << map2.size() << '\n';
+    for (auto itr : map2) {
+        cout << itr.first << '\n';
+    }
 }
