@@ -1,24 +1,34 @@
 #include <iostream>
 #include <map>
+#include <string>
 #include <unordered_map>
 using namespace std;
 
+int n, m;
+unordered_map<int, string> numToString;
+unordered_map<string, int> stringToNum;
+
 int main() {
-    int n, m;
-    unordered_map<string, int> map1;
-    map<string, int> map2;
-    string name;
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
     cin >> n >> m;
-    for (int i = 0; i < n; i++) {
-        cin >> name;
-        map1[name] = 1;
+    string poketmon;
+
+    for (int i = 1; i <= n; i++) {
+        cin >> poketmon;
+        numToString[i] = poketmon;
+        stringToNum[poketmon] = i;
     }
-    for (int i = 0; i < m; i++) {
-        cin >> name;
-        if (map1[name] == 1) map2[name];
-    }
-    cout << map2.size() << '\n';
-    for (auto itr : map2) {
-        cout << itr.first << '\n';
+
+    for (int i = 1; i <= m; i++) {
+        cin >> poketmon;
+        if (isdigit(poketmon[0])) {
+            cout << numToString[stoi(poketmon)] << endl;
+        }
+        else {
+            cout << stringToNum[poketmon] << endl;
+        }
     }
 }
