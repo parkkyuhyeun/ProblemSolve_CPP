@@ -1,28 +1,23 @@
 #include <iostream>
-#include <unordered_set>
 using namespace std;
 
-int main()
-{
-    int aCount, bCount, answer, count = 0;
-    cin >> aCount >> bCount;
-    unordered_set<int> a;
-    unordered_set<int> b;
-    for (int i = 0; i < aCount; i++) {
+int main() {
+    int n, score = 0, upper = 1;
+    string answer;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
         cin >> answer;
-        a.insert(answer);
-    }
-    for (int i = 0; i < bCount; i++) {
-        cin >> answer;
-        if (a.find(answer) == a.end()) {
-            count++;
+        for (int j = 0; j < answer.size(); j++) {
+            if (answer[j] == 'O') {
+                score += upper;
+                upper++;
+            }
+            else if (answer[j] == 'X') {
+                upper = 1;
+            }
         }
-        b.insert(answer);
+        cout << score << endl;
+        upper = 1;
+        score = 0;
     }
-    for (auto i : a) {
-        if (b.find(i) == b.end()) {
-            count++;
-        }
-    }
-    cout << count;
 }
