@@ -1,43 +1,45 @@
 #include <iostream>
-#include <vector>
-#include <queue>
-#include <algorithm>
 using namespace std;
 
-int main() {
-	int n, m, k, x, a, b;
-	vector<vector<int>> adj;
-	cin >> n >> m >> k >> x;
-	vector<int> answer;
-	vector<int> visited;
-	adj.resize(n + 1);
-	visited.resize(n + 1, -1);
-	for (int i = 0; i < m; i++) {
-		cin >> a >> b;
-		adj[a].push_back(b);
+int board[51][51];
+int visited[51][51];
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+
+void dfs(int y, int x) {
+	visited[y][x] = 1;
+	for (int i = 0; i < 4; i++) {
+		int ny = y + dy[i];
+		int nx = x + dx[i];
+		if (nx < 0 || ny < 0 || nx >= 51 || ny >= 51) continue;
+		if (board[ny][nx] == 1 && !visited[ny][nx]) {
+			dfs(ny, nx);
+		}
 	}
-	queue<int> q;
-	q.push(x);
-	visited[x] = 0;
-	while (!q.empty()) {
-		int now = q.front();
-		q.pop();
-		for (int i = 0; i < adj[now].size(); i++){
-			int next = adj[now][i];
-			if (visited[next] == -1) {
-				q.push(next);
-				visited[next] = visited[now] + 1;
-				if (visited[next] == k) {
-					answer.push_back(next);
+	return;
+}
+
+int main() {
+	int t, m, n, k, x, y;
+	cin >> t;
+	while (t--) {
+		int count = 0;
+		fill_n(board[0], 51 * 51, 0);
+		fill_n(visited[0], 51 * 51, 0);
+		cin >> m >> n >> k;
+
+		for (int i = 0; i < k; i++) {
+			cin >> x >> y;
+			board[y][x] = 1;
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (board[i][j] == 1 && !visited[i][j]) {
+					dfs(i, j);
+					count++;
 				}
 			}
 		}
-	}
-	sort(answer.begin(), answer.end());
-	if (answer.empty()) cout << -1;
-	else {
-		for (auto e : answer) {
-			cout << e << "\n";
-		}
+		cout << count << endl;
 	}
 }
