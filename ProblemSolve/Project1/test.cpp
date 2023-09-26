@@ -3,12 +3,16 @@
 using namespace std;
 
 int main() {
-	int n;
-	cin >> n;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n-i; j++) {
-			cout << "*";
+	string S;
+	getline(cin, S);
+	for (int i = 0; i < S.size(); i++) {
+		if (S[i] >= 'A' && S[i] <= 'Z') {
+			S[i] += 13;
+			if (S[i] > 90) S[i] -= 26;
 		}
-		cout << "" << endl;
+		if (S[i] >= 'a' && S[i] <= 'z') {
+			S[i] > 109 ? S[i] -= 13 : S[i] += 13;
+		}
 	}
+	std::cout << S;
 }
