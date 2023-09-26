@@ -3,18 +3,22 @@
 using namespace std;
 
 int main() {
-	int t, n, m;
-	string ns;
+	int t;
 	cin >> t;
-	for (int i = 0; i < t; i++) {
-		int count = 0;
-		cin >> n >> m;
-		for (int j = n; j <= m; j++) {
-			ns = to_string(j);
-			for (int k = 0; k < ns.size(); k++) {
-				if (ns[k] == '0') count++;
+	int A[10];
+	for (int e = 0; e < t; e++) {
+		for (int i = 0; i < 10; i++) {
+			cin >> A[i];
+		}
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < i; j++) {
+				if (A[i] < A[j]) {
+					int temp = A[i];
+					A[i] = A[j];
+					A[j] = temp;
+				}
 			}
 		}
-		cout << count << endl;
+		cout << A[7] << endl;
 	}
 }
