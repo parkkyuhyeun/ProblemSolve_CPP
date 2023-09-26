@@ -3,22 +3,12 @@
 using namespace std;
 
 int main() {
-	int t;
-	cin >> t;
-	int A[10];
-	for (int e = 0; e < t; e++) {
-		for (int i = 0; i < 10; i++) {
-			cin >> A[i];
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n-i; j++) {
+			cout << "*";
 		}
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < i; j++) {
-				if (A[i] < A[j]) {
-					int temp = A[i];
-					A[i] = A[j];
-					A[j] = temp;
-				}
-			}
-		}
-		cout << A[7] << endl;
+		cout << "" << endl;
 	}
 }
