@@ -1,45 +1,18 @@
 #include <iostream>
-#include <queue>
 #include <vector>
 using namespace std;
 
 int main() {
-	int x, y, w, h;
-	cin >> x >> y >> w >> h;
-	if (x < y) {
-		if (x < w - x) {
-			if (x < h - y) {
-				cout << x;
-			}
-			else {
-				cout << h - y;
-			}
-		}
-		else {
-			if (w - x < h - y) {
-				cout << w - x;
-			}
-			else {
-				cout << h - y;
-			}
-		}
+	int n, k, a, count = 0;
+	cin >> n >> k;
+	vector<int> v;
+	for (int i = 0; i < n; i++) {
+		cin >> a;
+		v.push_back(a);
 	}
-	else {
-		if (y < h - y) {
-			if (y < w - x) {
-				cout << y;
-			}
-			else {
-				cout << w - x;
-			}
-		}
-		else {
-			if (h - y < w - x) {
-				cout << h - y;
-			}
-			else {
-				cout << w - x;
-			}
-		}
+	for (int i = n - 1; i >= 0; i--) {
+		count += k / v[i];
+		k -= (k / v[i]) * v[i];
 	}
+	cout << count;
 }
